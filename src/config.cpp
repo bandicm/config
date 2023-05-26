@@ -4,12 +4,10 @@
 config::config(const string _configFilePath, const vector<string> _necessary) {
    necessary = _necessary;
    if(!init(_configFilePath)) {
-      cout << "ERROR init config file" << endl;
-      exit(1);
+      throw "[ERROR] Init config file ";
    }
    if (!isHaveNecessary()) {
-      cout << "ERROR Konfiguracijska datoteka nema sva nužna polja!" << endl;
-      exit(2);
+      throw "[ERROR] Configuration file does not have all the required fields ";
    }
 }
 
@@ -23,7 +21,7 @@ bool config::init(const string _configFilePath) {
    ifstream configFile; 
    configFile.open(_configFilePath, ios::in);  
    if(!configFile) { 
-      printf ("[CRITICAL ERROR] Nema konfiguracijske datoteke!");
+      //printf ("[CRITICAL ERROR] Nema konfiguracijske datoteke!");
       return false;
    }
    
