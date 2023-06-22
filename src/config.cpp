@@ -4,10 +4,10 @@
 config::config(const string _configFilePath, const vector<string> _necessary) {
    necessary = _necessary;
    if(!init(_configFilePath)) {
-      throw "[ERROR] Init config file ";
+      throw string("[ERROR] Init config file ");
    }
    if (!isHaveNecessary()) {
-      throw "[ERROR] Configuration file does not have all the required fields ";
+      throw string("[ERROR] Configuration file does not have all the required fields ");
    }
 }
 
