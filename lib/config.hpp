@@ -14,15 +14,17 @@ bool clearComments(string &a);
 void parseConfigLine(const string a, string &b, string &c);
 
 class config {
-    public:
-    vector<string> necessary; // = {"Username", "API", "Domain", "consolePrintLogs", "DinioServer1", "DinioServer2", "DinioGetIPURL", "DinioServer1Port", "DinioServer2Port" };
+    vector<string> necessary;
     map<string, string> element;
 
-    config(const string _configFilePath, const vector<string> _necessary = {});
-
-    void print();
-    bool init(const string _configFilePath);   
     bool isHaveNecessary(); 
+    bool init(const string _configFilePath);   
+
+    public:
+
+    config(const string _configFilePath, const vector<string> _necessary = {});
+    string operator[] (const string& key);
+    void print();
     
 };
 

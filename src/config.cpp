@@ -11,6 +11,10 @@ config::config(const string _configFilePath, const vector<string> _necessary) {
    }
 }
 
+string config::operator[](const string& key) {
+   return element[key];
+}
+
 
 /**
 *  Otvaram config.cfg datoteku, čitam je i inicijaliziram map kontenjer configs prema cnf_fields
