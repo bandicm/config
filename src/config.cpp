@@ -11,14 +11,11 @@ config::config(const string _configFilePath, const vector<string> _necessary) {
    }
 }
 
+
 string config::operator[](const string& key) {
    return element[key];
 }
 
-
-/**
-*  Otvaram config.cfg datoteku, čitam je i inicijaliziram map kontenjer configs prema cnf_fields
-*/
 
 bool config::init(const string _configFilePath) {
 
@@ -45,10 +42,6 @@ bool config::init(const string _configFilePath) {
 }
 
 
-/**
- * @brief Funkcija ispisuje configs kontejner - KORISTIMO SAMO ZA RAZVOJ I DEBUG
- * 
- */
 void config::print() {
     for(auto i : element) {
         cout << i.first << " " << i.second << "\n";
@@ -56,9 +49,6 @@ void config::print() {
 
 }
 
-/**
- * 
-*/
 
 bool config::isHaveNecessary() {
     bool necessaryHave = true;
@@ -73,12 +63,6 @@ bool config::isHaveNecessary() {
 }
 
 
-/**
- * @brief Čišćenje učitanih redova config datoteke od bijelih polja
- * 
- * @param a Prima string reda config datoteke
- */
-
 void clearWhiteSpaces(string &a) {
    const char whitespaces[] = {' ', '\t'};
    for (int i=0; i<sizeof(whitespaces)/sizeof(const char); i++) {
@@ -90,13 +74,6 @@ void clearWhiteSpaces(string &a) {
    }
 }
 
-/**
- * @brief Funkcija čisti komentare iz linije
- * 
- * @param a string linije config datoteke
- * @return true - cijela linija nije komentar
- * @return false - cijela je linija komentar
- */
 
 bool clearComments(string &a) {
    bool r = a[0] != '#';
@@ -107,13 +84,6 @@ bool clearComments(string &a) {
    return r;
 }
 
-/**
- * @brief Raskopavam konfiguracijsku liniju
- * 
- * @param a   String linije
- * @param b   Ključ
- * @param c   Vrijednost ključa
- */
 
 void parseConfigLine(const string a, string &b, string &c) {
 
