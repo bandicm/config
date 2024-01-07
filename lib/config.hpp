@@ -9,6 +9,8 @@
 
 using namespace std;
 
+namespace marcelb {
+
 /**
  * Clears white fields from a string
 */
@@ -65,5 +67,6 @@ class config {
     
 };
 
+}
 
 #endif

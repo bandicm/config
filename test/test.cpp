@@ -2,6 +2,7 @@
 #include "../lib/config.hpp"
 
 using namespace std;
+using namespace marcelb;
 
 int main() {
 

@@ -1,7 +1,7 @@
 #include "../lib/config.hpp"
 
 
-config::config(const string _configFilePath, const vector<string> _necessary) {
+marcelb::config::config(const string _configFilePath, const vector<string> _necessary) {
    necessary = _necessary;
    if(!init(_configFilePath)) {
       throw string("[ERROR] Init config file ");
@@ -12,12 +12,12 @@ config::config(const string _configFilePath, const vector<string> _necessary) {
 }
 
 
-string config::operator[](const string& key) {
+string marcelb::config::operator[](const string& key) {
    return element[key];
 }
 
 
-bool config::init(const string _configFilePath) {
+bool marcelb::config::init(const string _configFilePath) {
 
    ifstream configFile; 
    configFile.open(_configFilePath, ios::in);  
@@ -42,7 +42,7 @@ bool config::init(const string _configFilePath) {
 }
 
 
-void config::print() {
+void marcelb::config::print() {
     for(auto i : element) {
         cout << i.first << " " << i.second << "\n";
     }
@@ -50,7 +50,7 @@ void config::print() {
 }
 
 
-bool config::isHaveNecessary() {
+bool marcelb::config::isHaveNecessary() {
     bool necessaryHave = true;
     for (int i=0; i<necessary.size(); i++) {
         if (element[necessary[i]].empty()) {
@@ -63,7 +63,7 @@ bool config::isHaveNecessary() {
 }
 
 
-void clearWhiteSpaces(string &a) {
+void marcelb::clearWhiteSpaces(string &a) {
    const char whitespaces[] = {' ', '\t'};
    for (int i=0; i<sizeof(whitespaces)/sizeof(const char); i++) {
       for (int j=0; j<a.length(); j++) {
@@ -75,7 +75,7 @@ void clearWhiteSpaces(string &a) {
 }
 
 
-bool clearComments(string &a) {
+bool marcelb::clearComments(string &a) {
    bool r = a[0] != '#';
    size_t commentLocation = a.find('#');
    if(commentLocation <= a.length()) {
@@ -85,7 +85,7 @@ bool clearComments(string &a) {
 }
 
 
-void parseConfigLine(const string a, string &b, string &c) {
+void marcelb::parseConfigLine(const string a, string &b, string &c) {
 
    size_t separatorLocation = a.find('=');
    b = a.substr(0, separatorLocation);

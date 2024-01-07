@@ -18,25 +18,24 @@ Easily load variable configuration parameters into your program using this libra
 
 Just download the latest release and unzip it into your project. You can turn it on with:
 
-```
-#include config/lib/config.hpp
+```c++
+#include "config/lib/config.hpp"
+using namespace marcelb;
 ```
 
 ## Usage
 
 ```c++
-#include <iostream>
-#include "../lib/config.hpp"
-
-using namespace std;
-
-int main() {
-
+    /**
+     * Initialization and declaration
+     */
     config mycfg ("../example/config.cfg", {"Username", "API", "Domain" });
+
+    /**
+     * Accessing values using the key name and the [] operator
+     */ 
     cout << mycfg["consolePrintLogs"];
 
-    return 0;
-}
 ```
 
 ### Configuration file example
@@ -56,7 +55,7 @@ consolePrintLogs=true;
 
 ## Support & Feedback
 
-For support and any feedback, contact the address: marcelb96@yahoo.com.
+For support and any feedback, contact the address: marcelb96@yahoo.com
 
 ## Contributing
 
