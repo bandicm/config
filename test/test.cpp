@@ -9,5 +9,9 @@ int main() {
     config mycfg ("../example/config.cfg", {"Username", "API", "Domain" });
     cout << mycfg["consolePrintLogs"];
 
+    mycfg.update("Baba2", "Janja");
+    cout << mycfg["Baba"];
+
+
     return 0;
 }

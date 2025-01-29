@@ -4,6 +4,7 @@
         "compare": "cpp",
         "type_traits": "cpp",
         "iostream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "fstream": "cpp"
     }
 }

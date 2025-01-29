@@ -14,26 +14,27 @@ namespace marcelb {
 /**
  * Clears white fields from a string
 */
-void clearWhiteSpaces(string &a);
+static void clearWhiteSpaces(string &a);
 
 /**
  * Removes comments from a string
  * Returns false if the entire line is a comment, 
  * false if it is not
 */
-bool clearComments(string &a);
+static bool clearComments(string &a);
 
 /**
  * It parses the line of the configuration file, 
  * receives the string line and returns the key, 
  * value pair via reference
 */
-void parseConfigLine(const string a, string &b, string &c);
+static void parseConfigLine(const string a, string &b, string &c);
 
 /**
  * Configuration class - at the level of a single file
 */
 class config {
+    const string configFilePath;
     vector<string> necessary;
     map<string, string> element;
 
@@ -45,7 +46,12 @@ class config {
     /**
      * Internal method for initialization
     */
-    bool init(const string _configFilePath);   
+    bool init(const string _configFilePath);
+
+    /**
+     * Update config file
+     */
+    void update_file(const string& key);
 
     public:
 
@@ -59,6 +65,11 @@ class config {
      * Operator [] to access individual configuration parameter via key
     */
     string operator[] (const string& key);
+
+    /**
+     * Update config entry
+     */
+    void update(const string& key, const string& value);
 
     /**
      * Method to print all configuration key value pairs

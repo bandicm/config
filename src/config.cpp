@@ -1,8 +1,9 @@
 #include "../lib/config.hpp"
 
 
-marcelb::config::config(const string _configFilePath, const vector<string> _necessary) {
-   necessary = _necessary;
+marcelb::config::config(const string _configFilePath, const vector<string> _necessary):
+   configFilePath(_configFilePath), necessary(_necessary) {
+
    if(!init(_configFilePath)) {
       throw string("[ERROR] Init config file ");
    }
@@ -16,6 +17,10 @@ string marcelb::config::operator[](const string& key) {
    return element[key];
 }
 
+void marcelb::config::update(const string& key, const string& value) {
+   element[key] = value;
+   update_file(key);
+}
 
 bool marcelb::config::init(const string _configFilePath) {
 
@@ -60,6 +65,48 @@ bool marcelb::config::isHaveNecessary() {
     }
 
     return necessaryHave;
+}
+
+
+void marcelb::config::update_file(const string& key) {
+   ifstream configFile(configFilePath);
+   if (!configFile.is_open()) {
+      throw invalid_argument("[ERROR] Cant open config file for update!");
+   }
+
+   vector<string> lines;
+   string line;
+   bool update = false;
+   while (getline(configFile, line)) {
+
+      size_t pos = line.find(key + "=");
+      if (pos != string::npos) {
+
+         size_t eqPos = line.find("=", pos);
+         size_t semicolonPos = line.find(";", eqPos);
+         if (eqPos != string::npos && semicolonPos != string::npos) {
+            line = key + "=" + element[key] + ";";
+            update = true;
+         }
+      }
+      lines.push_back(line);
+   }
+   if (!update) {
+      line = key + "=" + element[key] + ";";
+      lines.push_back(line);
+   }
+   configFile.close();
+
+   ofstream configFileOut(configFilePath);
+   if (!configFileOut.is_open()) {
+      throw invalid_argument("[ERROR] Cant update config file!");
+   }
+
+   for (const string& updatedLine : lines) {
+      configFileOut << updatedLine << endl;
+   }
+
+   configFileOut.close();
 }
 
 
