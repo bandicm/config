@@ -14,7 +14,10 @@ marcelb::config::config(const string _configFilePath, const vector<string> _nece
 
 
 string marcelb::config::operator[](const string& key) {
-   return element[key];
+   if (element.count(key)) {
+      return element[key];
+   } 
+   return "";
 }
 
 void marcelb::config::update(const string& key, const string& value) {

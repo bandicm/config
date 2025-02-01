@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../lib/config.hpp"
+#include <unistd.h>
 
 using namespace std;
 using namespace marcelb;
@@ -12,6 +13,6 @@ int main() {
     mycfg.update("Baba2", "Janja");
     cout << mycfg["Baba"];
 
-
+    sleep(10000);
     return 0;
 }
