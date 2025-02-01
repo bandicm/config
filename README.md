@@ -13,10 +13,11 @@ Easily load variable configuration parameters into your program using this libra
 - Predefined necessary keys and enabled validation
 - Strict configuration file format
 - Comments in configuration file supported
+- Update config file from program
 
 ## Installation
 
-Just download the latest release and unzip it into your project. You can turn it on with:
+Just download the latest release and use cmake build system
 
 ```c++
 #include "config/lib/config.hpp"
